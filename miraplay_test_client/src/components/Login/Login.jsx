@@ -2,7 +2,7 @@ import { Link, Navigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import cn from 'classnames';
-import { fetchAuth } from '../../redux/slices/authSlice';
+import { fetchAuth, resetErrors } from '../../redux/slices/authSlice';
 import './Login.scss';
 
 export const Login = () => {
@@ -18,6 +18,10 @@ export const Login = () => {
     },
     mode: 'onSubmit',
   });
+
+  const handleRegisterClick = () => {
+    dispatch(resetErrors());
+  };
 
   const onSubmit =  async (params) => {
     const data = await dispatch(fetchAuth(params));
@@ -73,7 +77,7 @@ export const Login = () => {
         <button disabled={isLoading} type="submit" className="login__button">Увійти</button>
       </form>
       <Link to={'/register'}>
-        <button disabled={isLoading} className="login__button">Реєстрація</button>
+        <button onClick={handleRegisterClick} disabled={isLoading} className="login__button">Реєстрація</button>
       </Link>
     </div>
   );

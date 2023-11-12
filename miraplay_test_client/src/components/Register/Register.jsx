@@ -32,7 +32,7 @@ export const Register = () => {
     <div className="register">
       {isLoading && <p className="register__loading-text">Завантаження...</p>}
       <form className="register__form" onSubmit={(handleSubmit(onSubmit))}>
-        <p className="register__input-title">Введіть емейл :</p>
+        <p className="register__input-title">Введіть електронну пошту :</p>
         <input 
           className={cn('register__input', {'register__input--error': errors.email?.message})} 
           type="text"
@@ -112,7 +112,7 @@ export const Register = () => {
         <button disabled={isLoading} type="submit" className="register__button">Зареєструватися</button>
       </form>
       <Link to={'/login'}>
-        <button disabled={isLoading} className="register__button">Натисни якщо вже маєш аккаунт</button>
+        <button disabled={isLoading} className="register__button">Натисни, якщо вже маєш аккаунт</button>
       </Link>
       {data && 
       <Link to={'/login'} onClick={clearData}>

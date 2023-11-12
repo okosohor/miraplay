@@ -6,7 +6,7 @@ export const category = [
   {title:'ЛАУНЧЕРИ', value:'LAUNCHERS'},
   {title:'MMO', value:'MMORPG'},
   {title:'СТРАТЕГІЇ', value:'STRATEGY'},
-  {title:'РИБОЛОВЛЯ', value:'FIGHTING'},
+  {title:'ФАЙТИНГИ', value:'FIGHTING'},
   {title:'ГОНКИ', value:'RACING'},
   {title:'ВИЖИВАННЯ', value:'SURVIVAL'},
   {title:'ОНЛАЙН', value:'ONLINE'},
