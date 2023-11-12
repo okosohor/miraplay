@@ -2,23 +2,29 @@
 
 .login {
 
-  padding: 70px 50px;
   position: relative;
-  border: 2px solid $darkGreen;
-  background-color: $darkGrey;
-  border-radius: 30px;
+
+  width: 400px;
+  padding: 70px 50px;
+
   font-size: 18px;
   font-weight: 500;
-  width: 400px;
+
+  background-color: $darkGrey;
+  border: 2px solid $darkGreen;
+  border-radius: 30px;
 
   &__loading-text{
+    position: absolute;
     top: 30px;
     left: 50%;
-    transform: translateX(-50%);
-    position: absolute;
+
     font-size: 22px;
     font-weight: 600;
+
     color: $lightGray;
+
+    transform: translateX(-50%);
   }
 
   &__form {
@@ -26,15 +32,17 @@
   }
 
   &__input {
-    font-size: 20px;
     width: 100%;
     padding: 5px 15px;
-    outline:none;
-    border-radius: 15px;
-    border: 2px solid $darkGreen;
-    background-color: $grey;
-    color: $lightGray;
     margin-bottom: 20px;
+
+    font-size: 20px;
+
+    color: $lightGray;
+    background-color: $grey;
+    border: 2px solid $darkGreen;
+    border-radius: 15px;
+    outline:none;
 
     &--error {
       border-color: $red;
@@ -44,45 +52,44 @@
         color: $lightGray;
         margin-bottom: 5px;
       }
-    
   }
 
   &__error {
-    text-align: center;
     margin-bottom: 5px;
+
+    text-align: center;
+
     color: $red;
   }
 
   &__button {
+    display: block;
+
     width: 100%;
     margin-bottom: 20px;
+    padding: 10px;
 
     font-size: 20px;
-    display: block;
-    padding: 10px;
-    border: 2px solid $green;
-    background-color: $darkGreen;
-    transition: all 0.3s;
+
     color: $lightGray;
+    background-color: $darkGreen;
+    border: 2px solid $green;
     border-radius: 20px;
+
+    transition: all 0.3s;
 
     &:hover {
       background-color: $green;
+
       scale: (1.1);
     }
 
     &:disabled {
-      scale: none;
       background-color: #638155;
+
+      scale: none;
+      
       cursor: not-allowed;
-    }
-
-    &-register {
-
-    }
-
-    &-auth {
-
     }
   }
 }

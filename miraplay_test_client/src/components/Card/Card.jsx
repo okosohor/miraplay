@@ -1,8 +1,8 @@
-import './Card.scss';
 import steam from '../../images/Steam.svg';
 import epicGames from '../../images/epic-games.svg';
 import wargaming from './../../images/wargaming.svg';
 import ea from './../../images/ea.svg';
+import './Card.scss';
 
 export const Card = ({ game }) => {
   const launchersLogo = {

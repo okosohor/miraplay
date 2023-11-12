@@ -6,6 +6,7 @@ import { logout } from '../../redux/slices/authSlice';
 export const Header = () => {
   const login = useSelector(state => state.auth.data?.login);
   const dispatch = useDispatch();
+
   const handleClick = () => {
     if(window.confirm('Ви впевнені що хочете вийти?')) {
       dispatch(logout());

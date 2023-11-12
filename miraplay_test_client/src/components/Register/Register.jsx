@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import cn from 'classnames';
-import './Register.scss';
 import { useDispatch, useSelector } from 'react-redux';
+import cn from 'classnames';
 import { fetchRegister, resetData } from '../../redux/slices/registerSlice';
+import './Register.scss';
 
 export const Register = () => {
   const dispatch = useDispatch();
   const { data, isLoading, errorMessage}= useSelector(state => state.register);
-  const { register, watch, handleSubmit, setError, formState: {errors, isValid} } = useForm ({
+  const { register, watch, handleSubmit, setError, formState: { errors } } = useForm ({
     defaultValues: {
       email: '',
       login: '',
@@ -19,34 +19,15 @@ export const Register = () => {
     mode: 'onSubmit',
   });
 
+  const onSubmit =  async (params) => {
+    const { confPassword, ...paramsToSend} = params;
+    dispatch(fetchRegister(paramsToSend));
+  };
+
   const clearData = () => {
     dispatch(resetData());
   };
 
-
-  const onSubmit =  async (params) => {
-
-    const { confPassword, ...paramsToSend} = params;
-
-    // registerData = await dispatch(fetchRegister(paramsToSend));
-
-    dispatch(fetchRegister(paramsToSend));
-
-    // IF DATA NAVIGATE TO
-
-
-    // if(data.payload && 'token' in data.payload) {
-    //   window.localStorage.setItem('token', data.payload.token);
-    // } 
-  
-  };
-  // const dispatch = useDispatch();
-  // const serverError = useSelector(state => state.auth.errorMessage);
-  // console.log(serverError);
-
-  // if(isAuth) {
-  //   return <Navigate to="/games"/>;
-  // }
   return (
     <div className="register">
       {isLoading && <p className="register__loading-text">Завантаження...</p>}
@@ -77,7 +58,6 @@ export const Register = () => {
         <input 
           className={cn('register__input', {'register__input--error': errors.login?.message})}
           type="text" 
-          {...register('login', {required: 'Введіть логін', minLength: {value:3, message:'Мінімальна довжина 3 символи'}})}
           autoComplete="off"
           onChange={() => {
             setError('login', {
@@ -85,26 +65,39 @@ export const Register = () => {
               message: '',
             });
           }}
+          {...register('login', {
+            required: 'Введіть логін', 
+            minLength: {value:3, message:'Мінімальна довжина 3 символи'},
+          })}
         />
         <p className="register__error">{errors.login?.message}</p>
         <p className="register__input-title">Введіть пароль :</p>
         <input 
           className={cn('register__input', {'register__input--error': errors.password?.message})}
           type="password"
-          {...register('password', {required: 'Введіть пароль', minLength: {value:5, message:'Мінімальна довжина 5 символів'}})}
           onChange={() => {
             setError('password', {
               type: 'manual',
               message: '',
             });
           }}
+          {...register('password', {
+            required: 'Введіть пароль', 
+            minLength: {value:5, message:'Мінімальна довжина 5 символів'},
+          })}
           
         />
         <p className="register__error">{errors.password?.message}</p>
         <p className="register__input-title">Продублюйте пароль :</p>
         <input 
           className={cn('register__input', {'register__input--error': errors.confPassword?.message})}
-          type="password" 
+          type="password"
+          onChange={() => {
+            setError('confPassword', {
+              type: 'manual',
+              message: '',
+            });
+          }}
           {...register('confPassword', 
             {
               required: 'Продублюйте пароль', 
@@ -113,12 +106,6 @@ export const Register = () => {
                 return 'Паролі не збігаються';
               }},
             })}
-          onChange={() => {
-            setError('confPassword', {
-              type: 'manual',
-              message: '',
-            });
-          }}
         />
         <p className="register__error ">{errors.confPassword?.message}</p>
         <p className="register__error ">{errorMessage}</p>

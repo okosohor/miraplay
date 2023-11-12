@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
 import { ErrorPage } from '../../pages/ErrorPage';
 import { GamesPage } from '../../pages/GamesPage';
 import { LoginPage } from '../../pages/LoginPage';
 import { RegisterPage } from '../../pages/RegisterPage';
-import './App.css';
 import { Route, Routes, Navigate } from 'react-router-dom';
-import { useEffect } from 'react';
 import { fetchAuthMe } from '../../redux/slices/authSlice';
+import './App.css';
 
 function App() {
   const dispatch = useDispatch();

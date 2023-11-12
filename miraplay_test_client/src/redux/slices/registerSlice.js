@@ -14,7 +14,6 @@ export const fetchRegister = createAsyncThunk('register/fetchRegister', async (c
     if(!response.ok) {
       
       const errorText = await response.text();
-      console.log(errorText);
       throw (errorText);
     }
 
@@ -22,7 +21,6 @@ export const fetchRegister = createAsyncThunk('register/fetchRegister', async (c
     return data;
   } catch (error) {
     throw new Error(error);
-    console.log(error);
   }
 });
 

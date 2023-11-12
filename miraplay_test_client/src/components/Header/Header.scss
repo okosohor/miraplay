@@ -1,33 +1,38 @@
 @import '../../utils/vars.scss';
 
 .header {
-  z-index: 2;
   position: fixed;
+  z-index: 2;
+
   width: 100%;
+
   background-color: $grey;
   box-shadow: 1px 8px 16px -1px rgba(0,0,0,0.74);
   -webkit-box-shadow: 1px 8px 16px -1px rgba(0,0,0,0.74);
   -moz-box-shadow: 1px 8px 16px -1px rgba(0,0,0,0.74);
 
   &__container {
-    width: 1170px;
     display: flex;
-    margin: 0 auto;
     justify-content: space-between;
+
+    width: 1170px;
+    margin: 0 auto;
     padding: 10px 5px;
     
   }
 
   &__title {
+    color: white;
+
     font-size: 24px;
     text-transform: uppercase;
     font-weight: 700;
-    color: white;
   }
 
   &__subtitle {
-    font-size: 16px;
     color: $lightGray;
+
+    font-size: 16px;
     font-weight: 300;
   }
 
@@ -35,30 +40,36 @@
     display: flex;
 
     &-login {
-      font-size: 18px;
-      background-color: $green;
-      color: $lightGray;
-      padding: 15px;
-      border-radius: 15px;
       margin-right: 20px;
+      padding: 15px;
+
+      font-size: 18px;
       font-weight: 600;
+
+      color: $lightGray;
+      background-color: $green;
+      border-radius: 15px;
+
       cursor: default;
     }
 
     &-logout {
-      font-size: 18px;
       padding: 15px;
-      border-radius: 15px;
+
+      font-size: 18px;
+      font-weight: 600;
+
       color: $lightGray;
       background-color: $darkGreen;
-      font-weight: 600;
       border: 2px solid $green;
+      border-radius: 15px;
+
       transition: all 0.3s;
+
       cursor: pointer;
 
       &:hover {
         background-color: $green;
-
       }
     }
   }

@@ -1,16 +1,17 @@
 import { Link, Navigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import cn from 'classnames';
-import './Login.scss';
 import { useDispatch, useSelector } from 'react-redux';
+import cn from 'classnames';
 import { fetchAuth } from '../../redux/slices/authSlice';
-import { useEffect } from 'react';
+import './Login.scss';
 
 export const Login = () => {
+  const dispatch = useDispatch();
   const isAuth = useSelector(state => Boolean(state.auth.data));
   const isLoading = useSelector(state => state.auth.isLoading);
+  const serverError = useSelector(state => state.auth.errorMessage);
 
-  const { register, handleSubmit, setError, formState: {errors, isValid} } = useForm ({
+  const { register, handleSubmit, setError, formState: {errors} } = useForm ({
     defaultValues: {
       login: '',
       password: '',
@@ -21,18 +22,10 @@ export const Login = () => {
   const onSubmit =  async (params) => {
     const data = await dispatch(fetchAuth(params));
 
-    // if(!data.payload) {
-    //   return alert('Не вдалося авторизуватися');
-    // }
-
     if(data.payload && 'token' in data.payload) {
       window.localStorage.setItem('token', data.payload.token);
     } 
-  
   };
-  const dispatch = useDispatch();
-  const serverError = useSelector(state => state.auth.errorMessage);
-  console.log(serverError);
 
   if(isAuth) {
     return <Navigate to="/games"/>;
@@ -53,7 +46,11 @@ export const Login = () => {
               message: '',
             });
           }}
-          {...register('login', {required: 'Введіть логін', minLength: {value:3, message:'Мінімальна довжина 3 символи'}})}
+          {...register('login', {
+            required: 'Введіть логін', 
+            minLength: {value:3, message:'Мінімальна довжина 3 символи',
+            }}
+          )}
         />
         <p className="login__error">{errors.login?.message}</p>
         <p className="login__input-title">Введіть пароль :</p>
@@ -66,7 +63,10 @@ export const Login = () => {
               message: '',
             });
           }}
-          {...register('password', {required: 'Введіть пароль', minLength: {value:5, message:'Мінімальна довжина 5 символів'}})}
+          {...register('password', {
+            required: 'Введіть пароль', 
+            minLength: {value:5, message:'Мінімальна довжина 5 символів'},
+          })}
         />
         <p className="login__error login__error--active">{errors.password?.message}</p>
         <p className="login__error">{serverError}</p>

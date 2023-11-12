@@ -3,15 +3,18 @@
 .error {
   &__content {
     padding: 70px 50px;
-    border: 2px solid $darkGreen;
+
     background-color: $darkGrey;
+    border: 2px solid $darkGreen;
     border-radius: 30px;
   }
 
   &__title {
     margin-bottom: 50px;
+
     font-size: 40px;
     font-weight: 700;
+
     color: $lightGray;
   }
 
@@ -19,16 +22,20 @@
     display: block;
     margin: 0 auto;
     padding: 20px 50px;
-    border: 2px solid $green;
-    background-color: $darkGreen;
-    transition: all 0.3s;
-    color: $lightGray;
+    
     font-size: 30px;
     font-weight: 700;
+
+    color: $lightGray;
+    background-color: $darkGreen;
+    border: 2px solid $green;
     border-radius: 20px;
+
+    transition: all 0.3s;
 
     &:hover {
       background-color: $green;
+      
       scale: (1.1);
     }
   }

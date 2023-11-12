@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
-import './Selector.scss';
+import React from 'react';
 import cn from 'classnames';
 import { category } from '../../utils/GamesCategory';
-
+import './Selector.scss';
 
 export const Selector = ({ setSortByNew, sortByNew, setGamesCategory, gamesCategory}) => {
   return (

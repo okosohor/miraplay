@@ -1,24 +1,21 @@
 import { useEffect, useState } from 'react';
-import cn from 'classnames';
-import { Card } from '../Card/Card';
-import './CardList.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchGames } from '../../redux/slices/gamesSlice';
 import { Navigate } from 'react-router-dom';
+import { fetchGames } from '../../redux/slices/gamesSlice';
 import { category } from '../../utils/GamesCategory';
+import { Card } from '../Card/Card';
 import { Selector } from '../Selector';
+import './CardList.scss';
 
 
 
 export const CardList = () => {
   const [page, setPage] = useState(1);
   const [sortByNew, setSortByNew] = useState(true);
-  // const [data, setData] = useState([]);
   const [gamesCategory, setGamesCategory] = useState(category[0].value);
   const dispatch = useDispatch();
   const data = useSelector(state => state.games);
   
-
   useEffect(() => {
     const config = { 
       page,
@@ -26,38 +23,11 @@ export const CardList = () => {
       genre: gamesCategory,
       gamesToShow: 9,
     };
-    
     dispatch(fetchGames(config));
-
-    // async function fetchData() {
-    //   try {
-    //     const response = await fetch('https://api.miraplay.cloud/games/by_page', {
-    //       method: 'POST',
-    //       headers: {
-    //         'Content-Type': 'application/json',
-    //       },
-    //       body: JSON.stringify(postData),
-    //     });
-    
-    //     if (!response.ok) {
-    //       throw new Error('Something went wrong');
-    //     }
-    
-    //     const data = await response.json();
-    //     setData(data);
-    //   } catch (error) {
-    //     throw new Error(error);
-    //   }
-    // }
-    
-    
-    // fetchData();
-    
-
-
-    // console.log(gamesCategory);
   }, [gamesCategory, sortByNew, page, dispatch]);
+
   const isAuth = useSelector(state => Boolean(state.auth.data));
+
   if(!isAuth) {
     return (
       <Navigate to="/login"/>
@@ -74,29 +44,6 @@ export const CardList = () => {
           sortByNew={sortByNew} 
           setGamesCategory={setGamesCategory}
         />
-        {/* <div className="card-list__selector-block">
-          <div className="card-list__category">
-            {category.map(({ title, value }) => (
-              <button key={title} className={cn('card-list__category-button', { 'card-list__category-button--selected': value === gamesCategory})} onClick={() => setGamesCategory(value)}>{title}</button>
-            ))}
-          </div>
-          <div className="card-list__sort">
-            <p className="card-list__sort-title">Показувати спочатку:</p>
-            <button 
-              className={cn('card-list__sort-button', {'card-list__sort-button--selected' : sortByNew})}  
-              onClick={() => setSortByNew(true)}
-            >
-              Новіші
-            </button>
-            <button 
-              className={cn('card-list__sort-button', {'card-list__sort-button--selected' : !sortByNew})}
-              onClick={() => setSortByNew(false)}
-            >
-              Старіші
-            </button>
-          </div>
-        </div> */}
-
         <div className="card-list__list">
           { data.games?.map(game => (
             <Card key={game._id} game={game}/>

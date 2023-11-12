@@ -14,7 +14,6 @@ export const fetchAuth = createAsyncThunk('auth/fetchAuth', async (config) => {
     if(!response.ok) {
       
       const errorText = await response.text();
-      console.log(errorText);
       throw (errorText);
     }
 
@@ -22,7 +21,6 @@ export const fetchAuth = createAsyncThunk('auth/fetchAuth', async (config) => {
     return data;
   } catch (error) {
     throw new Error(error);
-    console.log(error);
   }
 });
 
@@ -64,18 +62,15 @@ const authSlice = createSlice({
         state.data = action.payload;
         state.isLoading = false;
       })
-      .addCase(fetchAuthMe.fulfilled, (state, action) => { 
-        console.log(action.payload);
+      .addCase(fetchAuthMe.fulfilled, (state, action) => {
         state.errorMessage = null;
         state.data = action.payload;
       })
       .addCase(fetchAuthMe.rejected, (state, action) => { 
-        console.log(action.payload);
         state.errorMessage = null;
         state.data = null;
       })
       .addCase(fetchAuth.rejected, (state, action) => {
-        console.log(JSON.parse(action.error.message).message);
         state.errorMessage = JSON.parse(action.error.message).message;
         state.isLoading = false;
       })
