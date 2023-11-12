@@ -1,6 +1,9 @@
 {
   "name": "miraplay_test_server",
   "version": "1.0.0",
+  "engines": {
+    "node": "16.20.2 <17.0.0"
+  },
   "description": "",
   "main": "index.js",
   "type": "module",

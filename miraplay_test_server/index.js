@@ -4,6 +4,8 @@ import cors from 'cors';
 
 import { registerValidator } from './validations/auth.js';
 
+const PORT = process.env.PORT || 7373
+
 import * as UserController from './controllers/UserController.js';
 
 import checkAuth from './utils/checkAuth.js';
@@ -24,7 +26,7 @@ app.post('/auth/register', registerValidator, handleValidationErrors, UserContro
 
 app.get('/auth/me', checkAuth, UserController.getMe)
 
-app.listen(4444, (err) => {
+app.listen(PORT, (err) => {
   if(err) {
     return console.log(err);
   }
