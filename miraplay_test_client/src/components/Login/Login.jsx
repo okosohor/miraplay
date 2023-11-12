@@ -51,6 +51,7 @@ export const Login = () => {
             });
           }}
           {...register('login', {
+            trim: true,
             required: 'Введіть логін', 
             minLength: {value:3, message:'Мінімальна довжина 3 символи',
             }}

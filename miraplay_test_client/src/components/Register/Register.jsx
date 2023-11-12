@@ -40,10 +40,10 @@ export const Register = () => {
           {...register('email', 
             {
               required: 'Введіть емейл', 
-              email: 'Введіть коректний емейл',
+              email: 'Введіть коректну електронну пошту',
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                message: 'Введіть коректний емейл'},
+                message: 'Введіть коректну електронну пошту'},
             })}
             
           onChange={() => {
@@ -68,6 +68,7 @@ export const Register = () => {
           {...register('login', {
             required: 'Введіть логін', 
             minLength: {value:3, message:'Мінімальна довжина 3 символи'},
+            maxLength: {value:25, message:'Логін занадто довгий'},
           })}
         />
         <p className="register__error">{errors.login?.message}</p>
