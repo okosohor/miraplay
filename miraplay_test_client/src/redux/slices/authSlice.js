@@ -41,7 +41,7 @@ export const fetchAuthMe = createAsyncThunk('auth/fetchAuthMe', async () => {
 });
 
 const initialState = {
-  data: null,
+  data: window.localStorage.getItem('token') || null,
   errorMessage: null,
   isLoading: false,
 };
@@ -60,25 +60,25 @@ const authSlice = createSlice({
   },
   extraReducers: builder => {
     builder
+      .addCase(fetchAuthMe.fulfilled, (state, action) => {
+        state.errorMessage = null;
+        state.data = action.payload;
+      })
+      .addCase(fetchAuthMe.rejected, (state) => { 
+        state.errorMessage = null;
+        state.data = null;
+      })
+      .addCase(fetchAuth.pending, (state) => {
+        state.isLoading = true;
+      })
       .addCase(fetchAuth.fulfilled, (state, action) => { 
         state.errorMessage = null;
         state.data = action.payload;
         state.isLoading = false;
       })
-      .addCase(fetchAuthMe.fulfilled, (state, action) => {
-        state.errorMessage = null;
-        state.data = action.payload;
-      })
-      .addCase(fetchAuthMe.rejected, (state, action) => { 
-        state.errorMessage = null;
-        state.data = null;
-      })
       .addCase(fetchAuth.rejected, (state, action) => {
         state.errorMessage = JSON.parse(action.error.message).message;
         state.isLoading = false;
-      })
-      .addCase(fetchAuth.pending, (state) => {
-        state.isLoading = true;
       });
     
   },

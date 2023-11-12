@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 import './GamesPage.scss';
 
 export const GamesPage = () => {
-  const isAuth = useSelector(state => Boolean(state.auth.data));
 
   return (
     <div className="games-page">
