@@ -1,0 +1,111 @@
+@import '../../utils/vars.scss';
+
+.card {
+  position: relative;
+  color: $lightGray;
+  height: 500px;
+  width: 366px;
+  background-color: $black;
+  border: 1px solid $lightGray;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: $grey;
+    border-color: $green;
+  }
+
+  &__image {
+    margin-bottom: 10px;
+    border-radius: 20px 20px 0 0;
+    height: 300px;
+    min-height: 300px;
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+  }
+
+  &__description {
+    padding: 0 15px;
+    height: 150px;
+    
+  }
+
+  &__title {
+    font-size: 18px;
+    margin-bottom: 10px;
+    font-weight: 800;
+  }
+
+  &__free {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: $green;
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  &__banners {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  &__top {
+    margin-right: 20px;
+  }
+
+  &__top {
+    background-color: $green;
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  &__genre {
+    padding: 5px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    background-color: $grey;
+    opacity: 75%;
+
+    
+  }
+
+  &__text {
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    -ms-line-clamp: 5;
+    -webkit-line-clamp: 5;
+    line-clamp: 5;
+    display: -webkit-box;
+    display: box;
+    word-wrap: break-word;
+    -webkit-box-orient: vertical;
+  }
+
+  &__launchers {
+    position: absolute;
+    top: 265px;
+    left: 15px;
+  }
+
+  &__logo {
+    width: 50px;
+    height: 50px;
+    border: 6px solid $black;
+    border-radius: 50%;
+    background-color: white;
+  }
+}

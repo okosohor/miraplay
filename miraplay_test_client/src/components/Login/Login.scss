@@ -1,0 +1,88 @@
+@import '../../utils/vars.scss';
+
+.login {
+
+  padding: 70px 50px;
+  position: relative;
+  border: 2px solid $darkGreen;
+  background-color: $darkGrey;
+  border-radius: 30px;
+  font-size: 18px;
+  font-weight: 500;
+  width: 400px;
+
+  &__loading-text{
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    font-size: 22px;
+    font-weight: 600;
+    color: $lightGray;
+  }
+
+  &__form {
+    margin-bottom: 20px;
+  }
+
+  &__input {
+    font-size: 20px;
+    width: 100%;
+    padding: 5px 15px;
+    outline:none;
+    border-radius: 15px;
+    border: 2px solid $darkGreen;
+    background-color: $grey;
+    color: $lightGray;
+    margin-bottom: 20px;
+
+    &--error {
+      border-color: $red;
+    }
+
+      &-title {
+        color: $lightGray;
+        margin-bottom: 5px;
+      }
+    
+  }
+
+  &__error {
+    text-align: center;
+    margin-bottom: 5px;
+    color: $red;
+  }
+
+  &__button {
+    width: 100%;
+    margin-bottom: 20px;
+
+    font-size: 20px;
+    display: block;
+    padding: 10px;
+    border: 2px solid $green;
+    background-color: $darkGreen;
+    transition: all 0.3s;
+    color: $lightGray;
+    border-radius: 20px;
+
+    &:hover {
+      background-color: $green;
+      scale: (1.1);
+    }
+
+    &:disabled {
+      scale: none;
+      background-color: #638155;
+      cursor: not-allowed;
+    }
+
+    &-register {
+
+    }
+
+    &-auth {
+
+    }
+  }
+}

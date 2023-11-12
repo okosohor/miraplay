@@ -1,0 +1,14 @@
+@import url('./fonts/stylesheet.css');
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: 'Neue Machina';
+  
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit; 
+}
