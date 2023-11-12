@@ -1,9 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { json } from 'react-router-dom';
+import { BASE_URL } from '../../utils/Variables';
 
 export const fetchAuth = createAsyncThunk('auth/fetchAuth', async (config) => {
   try {
-    const response = await fetch('http://localhost:4444/auth/login', {
+    const response = await fetch(`${BASE_URL}/auth/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -27,7 +27,7 @@ export const fetchAuth = createAsyncThunk('auth/fetchAuth', async (config) => {
 });
 
 export const fetchAuthMe = createAsyncThunk('auth/fetchAuthMe', async () => {
-  const response = await fetch('http://localhost:4444/auth/me', {
+  const response = await fetch(`${BASE_URL}}/auth/me`, {
     method: 'GET',
     headers: {
       'Authorization': window.localStorage.getItem('token'),

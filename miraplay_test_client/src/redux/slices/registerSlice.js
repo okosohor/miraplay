@@ -1,8 +1,9 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { BASE_URL } from '../../utils/Variables';
 
 export const fetchRegister = createAsyncThunk('register/fetchRegister', async (config) => {
   try {
-    const response = await fetch('http://localhost:4444/auth/register', {
+    const response = await fetch(`${BASE_URL}/auth/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
