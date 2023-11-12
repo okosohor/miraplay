@@ -78,7 +78,7 @@ export const login = async (req, res) => {
 
     if(!isValidPass) {
       return res.status(404).json({
-        message: 'Wrong login or password'
+        message: 'Невірний логін чи пароль'
       })
     }
 
