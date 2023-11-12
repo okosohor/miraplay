@@ -1,14 +1,16 @@
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import cn from 'classnames';
 import { fetchRegister, resetData } from '../../redux/slices/registerSlice';
+import { fetchAuth } from '../../redux/slices/authSlice';
 import './Register.scss';
 
 export const Register = () => {
   const dispatch = useDispatch();
   const { data, isLoading, errorMessage}= useSelector(state => state.register);
-  const { register, watch, handleSubmit, setError, formState: { errors } } = useForm ({
+  const isAuth = useSelector(state => Boolean(state.auth.data));
+  const { getValues ,register, watch, handleSubmit, setError, formState: { errors } } = useForm ({
     defaultValues: {
       email: '',
       login: '',
@@ -24,9 +26,33 @@ export const Register = () => {
     dispatch(fetchRegister(paramsToSend));
   };
 
-  const clearData = () => {
-    dispatch(resetData());
+  // const clearData = () => {
+  //   dispatch(resetData());
+  // };
+
+  const handleClick =  async () => {
+
+    const login = getValues('login');
+    const password =  getValues('password');
+  
+    const params = {
+      login,
+      password,
+    };
+
+    const data = await dispatch(fetchAuth(params));
+
+    if(data.payload && 'token' in data.payload) {
+      window.localStorage.setItem('token', data.payload.token);
+    } 
   };
+
+
+  if(isAuth) {
+    dispatch(resetData());
+    return <Navigate to="/games"/>;
+    
+  }
 
   return (
     <div className="register">
@@ -39,7 +65,7 @@ export const Register = () => {
           autoComplete="off"
           {...register('email', 
             {
-              required: 'Введіть емейл', 
+              required: 'Введіть електронну пошту', 
               email: 'Введіть коректну електронну пошту',
               pattern: {
                 value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
@@ -116,9 +142,7 @@ export const Register = () => {
         <button disabled={isLoading} className="register__button">Натисни, якщо вже маєш аккаунт</button>
       </Link>
       {data && 
-      <Link to={'/login'} onClick={clearData}>
-        <p className="register__success-message">Вітаємо з успішною реєстрацією, натисніть на цей текст для авторизації</p>
-      </Link>
+        <p onClick={handleClick} className="register__success-message">Вітаємо з успішною реєстрацією, натисніть на цей текст для авторизації</p>
       }
     </div>
   );
