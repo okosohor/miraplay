@@ -1,0 +1,74 @@
+@import '../../utils/vars.scss';
+
+.selector {
+  display: flex;
+  
+  &__category {
+    display: flex;
+    flex-wrap: wrap;
+    &-button {
+      padding: 10px 15px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      border: 1px solid $lightGray;
+      background-color: $grey;
+      color: $lightGray;
+      font-size: 16px;
+      border-radius: 10px;
+      transition: all 0.3s;
+      cursor: pointer;
+      font-weight: 500;
+
+      &:hover {
+        scale: (1.1);
+        border-color: $darkGreen;
+      }
+
+      &--selected {
+        background-color: $green;
+      }
+    }
+  }
+
+  &__sort {
+    padding: 0 10px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    
+
+    &-title {
+      color: $lightGray;
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+
+    &-button {
+      margin-bottom: 10px;
+      font-size: 22px;
+      font-weight: 500;
+      color: $lightGray;
+      background-color: $grey;
+      border: 1px solid $lightGray;
+      padding: 5px;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: all 0.3s;
+
+      &:hover {
+        border-color: $darkGreen;
+        scale: (1.05);
+      }
+
+      &--selected {
+        background-color: $green;
+
+        &:hover {
+          scale: none;
+          border-color: $lightGray;
+        }
+      }
+    }
+  }
+}

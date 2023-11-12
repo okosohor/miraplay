@@ -46,6 +46,7 @@ export const Login = () => {
         <input 
           className={cn('login__input',{'login__input--error': errors.login?.message})} 
           type="text"
+          autoComplete="off"
           onChange={() => {
             setError('login', {
               type: 'manual',

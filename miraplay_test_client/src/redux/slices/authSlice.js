@@ -27,7 +27,7 @@ export const fetchAuth = createAsyncThunk('auth/fetchAuth', async (config) => {
 });
 
 export const fetchAuthMe = createAsyncThunk('auth/fetchAuthMe', async () => {
-  const response = await fetch(`${BASE_URL}}/auth/me`, {
+  const response = await fetch(`${BASE_URL}/auth/me`, {
     method: 'GET',
     headers: {
       'Authorization': window.localStorage.getItem('token'),

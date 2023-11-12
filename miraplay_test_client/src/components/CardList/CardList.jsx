@@ -5,20 +5,10 @@ import './CardList.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchGames } from '../../redux/slices/gamesSlice';
 import { Navigate } from 'react-router-dom';
+import { category } from '../../utils/GamesCategory';
+import { Selector } from '../Selector';
 
-const category = [
-  {title:'ВСІ', value:['ALL', 'FREE', 'MOBA', 'SHOOTERS', 'LAUNCHERS', 'MMORPG', 'STRATEGY', 'FIGHTING', 'RACING', 'SURVIVAL', 'ONLINE']},
-  {title:'БЕЗКОШТОВНІ', value:'FREE'},
-  {title:'MOBA', value:'MOBA'},
-  {title:'ШУТЕРИ', value:'SHOOTERS'},
-  {title:'ЛАУНЧЕРИ', value:'LAUNCHERS'},
-  {title:'MMO', value:'MMORPG'},
-  {title:'СТРАТЕГІЇ', value:'STRATEGY'},
-  {title:'РИБОЛОВЛЯ', value:'FIGHTING'},
-  {title:'ГОНКИ', value:'RACING'},
-  {title:'ВИЖИВАННЯ', value:'SURVIVAL'},
-  {title:'ОНЛАЙН', value:'ONLINE'},
-];
+
 
 export const CardList = () => {
   const [page, setPage] = useState(1);
@@ -78,7 +68,13 @@ export const CardList = () => {
     <div className="card-list">
       <div className="card-list__container">
         <h2 className="card-list__title">Всі ігри</h2>
-        <div className="card-list__selector-block">
+        <Selector 
+          gamesCategory={gamesCategory} 
+          setSortByNew={setSortByNew} 
+          sortByNew={sortByNew} 
+          setGamesCategory={setGamesCategory}
+        />
+        {/* <div className="card-list__selector-block">
           <div className="card-list__category">
             {category.map(({ title, value }) => (
               <button key={title} className={cn('card-list__category-button', { 'card-list__category-button--selected': value === gamesCategory})} onClick={() => setGamesCategory(value)}>{title}</button>
@@ -99,7 +95,7 @@ export const CardList = () => {
               Старіші
             </button>
           </div>
-        </div>
+        </div> */}
 
         <div className="card-list__list">
           { data.games?.map(game => (
