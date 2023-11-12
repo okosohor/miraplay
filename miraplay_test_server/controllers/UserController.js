@@ -69,7 +69,7 @@ export const login = async (req, res) => {
 
     if(!user) {
       return res.status(404).json({
-        message: 'Користувача не знайдено'
+        message: 'Невірний логін чи пароль'
       })
     }
 
